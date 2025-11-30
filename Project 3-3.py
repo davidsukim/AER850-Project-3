@@ -6,7 +6,7 @@ import cv2
 
 def evaluate_project3():
     # 1. Loading the Model
-    model_path = r"D:\My Ryerson\7. Seventh Semester\AER 850\Project\3\runs\detect\pcb_yolo_run4\weights\best.pt"
+    model_path = r"D:\My Ryerson\7. Seventh Semester\AER 850\Project\3\runs\detect\pcb_yolo_run\weights\best.pt"
     
     if not os.path.exists(model_path):
         print(f"CANNOT FIND THE MODEL: {model_path}")
@@ -31,7 +31,7 @@ def evaluate_project3():
     for img_file in image_files:
         
         # Predicting
-        results = model.predict(img_file, save=True, imgsz=640, conf=0.25)
+        results = model.predict(img_file, save=True, imgsz=960, conf=0.25)
         
         # Visualizing
         result_img = results[0].plot()

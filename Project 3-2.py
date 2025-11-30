@@ -18,7 +18,7 @@ def train_pcb_model():
         print("'data.yaml' NOT FOUND. CHECK THE FILE LOCATION")
         return
 
-    # 3. loading the model
+    # 3. loading the model (Brining the light nano model)
     model = YOLO('yolo11n.pt') 
 
     # 4. ML START!!!
@@ -33,7 +33,7 @@ def train_pcb_model():
         device=0,             
         name='pcb_yolo_run',
         plots=True,
-        workers=0
+        workers=0       # Prevent Error
     )
 
     # 5. Finishing Time Calculation

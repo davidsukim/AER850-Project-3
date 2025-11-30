@@ -15,8 +15,10 @@ def mask_motherboard(image_path):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     blurred = cv2.GaussianBlur(gray, (5, 5), 0)
 
-    # 3. Edge Detection (Canny) [cite: 27, 29]
+    # 3. Edge Detection (Canny)
     edges = cv2.Canny(blurred, 50, 150)
+    kernel = np.ones((5, 5), np.uint8)
+    edges = cv2.dilate(edges, kernel, iterations=1) 
 
     # 4. Contour Detection [cite: 30]
     # only find the outline --> RETR_EXTERNAL
@@ -41,6 +43,8 @@ def mask_motherboard(image_path):
     
     plt.subplot(1, 3, 1)
     plt.title("Original")
+    
+    # Convert BGR into RGB
     plt.imshow(cv2.cvtColor(original, cv2.COLOR_BGR2RGB))
     
     plt.subplot(1, 3, 2)
@@ -57,5 +61,5 @@ def mask_motherboard(image_path):
     cv2.imwrite("extracted_motherboard.jpg", extracted)
     print("extracted image has been saved as 'extracted_motherboard.jpg'")
 
-# Load
+# Load (Image path)
 mask_motherboard('Project 3 Data/Project 3 Data/motherboard_image.JPEG')
