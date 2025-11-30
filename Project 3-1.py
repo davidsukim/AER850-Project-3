@@ -39,22 +39,22 @@ def mask_motherboard(image_path):
     # 7. Using "Bitwise AND" to remove the background
     extracted = cv2.bitwise_and(original, original, mask=mask)
 
-    plt.figure(figsize=(12, 6))
+    plt.figure(figsize=(15, 5))
     
-    plt.subplot(1, 3, 1)
-    plt.title("Original")
-    
-    # Convert BGR into RGB
-    plt.imshow(cv2.cvtColor(original, cv2.COLOR_BGR2RGB))
-    
-    plt.subplot(1, 3, 2)
-    plt.title("Edges (Canny)")
+    # Figure 1: Edges
+    plt.subplot(1, 4, 1)
+    plt.title("Figure 1: Edges (Canny)")
     plt.imshow(edges, cmap='gray')
 
-    plt.subplot(1, 3, 3)
-    plt.title("Extracted PCB")
+    # Figure 2: Mask
+    plt.subplot(1, 4, 2)
+    plt.title("Figure 2: Generated Mask")
+    plt.imshow(mask, cmap='gray')
+
+    # Figure 3: Result
+    plt.subplot(1, 4, 3)
+    plt.title("Figure 3: Extracted PCB")
     plt.imshow(cv2.cvtColor(extracted, cv2.COLOR_BGR2RGB))
-    
     plt.show()
 
     # Save the result
